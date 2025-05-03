@@ -1,6 +1,7 @@
 package main
 
 import types "../types"
+import "core:fmt"
 import rl "vendor:raylib"
 
 player_pos: rl.Vector2
@@ -9,19 +10,26 @@ player_grounded: bool
 player_current_anim: types.Animation
 player_anims: [2]types.Animation
 player_flip: bool
-
+player_sprite: rl.Texture2D
 
 player_init :: proc() {
+	player_sprite = rl.LoadTexture("./assets/sprites/knight.png")
+
+	run := get_tile_row_range(player_sprite, "3-8", rl.Vector2{32, 32})
+
+	fmt.println(run)
+
+
 	player_run := types.Animation {
-		texture      = rl.LoadTexture("./assets/cat/cat_run.png"),
-		num_frames   = 4,
+		texture      = player_sprite,
+		frames       = run,
 		frame_length = 0.1,
 		name         = .Run,
 	}
 
 	player_idle := types.Animation {
-		texture      = rl.LoadTexture("./assets/cat/cat_idle.png"),
-		num_frames   = 2,
+		texture      = player_sprite,
+		frames       = get_tile_row_range(player_sprite, "1-4", rl.Vector2{32, 32}),
 		frame_length = 0.5,
 		name         = .Idle,
 	}
@@ -58,8 +66,6 @@ player_update :: proc() {
 	}
 
 	player_pos += player_vel * rl.GetFrameTime()
-
-	//player_feet_collider := rl.Rectangle{player_pos.x - 4, player_pos.y - 4, 8, 4}
 
 	player_grounded = false
 
