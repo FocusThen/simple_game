@@ -5,7 +5,7 @@ import "core:fmt"
 import "core:mem"
 import rl "vendor:raylib"
 
-PixelWindowHeight :: 500
+PixelWindowHeight :: 180
 
 
 platform_collider :: proc(pos: rl.Vector2) -> rl.Rectangle {
@@ -35,7 +35,7 @@ main :: proc() {
 	rl.SetTargetFPS(500)
 
 
-	knight_sprite := rl.LoadTexture("./assets/sprites/knight.png")
+	//knight_sprite := rl.LoadTexture("./assets/sprites/knight.png")
 
 	player_init() // Player Init
 
@@ -70,18 +70,18 @@ main :: proc() {
 
 		rl.BeginMode2D(camera)
 		// Draw Player
-		//draw_animation(player_current_anim, player_pos, player_flip)
+		draw_animation(player_current_anim, player_pos, player_flip)
 
 
-		rl.DrawTexture(knight_sprite, 0, 0, rl.WHITE)
-		knight_sprite_x_calc := knight_sprite.width / 32
-		knight_sprite_y_calc := knight_sprite.height / 32
-
-		for i in 0 ..< knight_sprite_x_calc {
-			for j in 0 ..< knight_sprite_y_calc {
-				rl.DrawRectangle(i32(i * 32), i32(j * 32), 30, 30,rl.WHITE)
-			}
-		}
+		//rl.DrawTexture(knight_sprite, 0, 0, rl.WHITE)
+		//knight_sprite_x_calc := knight_sprite.width / 32
+		//knight_sprite_y_calc := knight_sprite.height / 32
+		//
+		//for i in 0 ..< knight_sprite_x_calc {
+		//	for j in 0 ..< knight_sprite_y_calc {
+		//		rl.DrawRectangle(i32(i * 32), i32(j * 32), 30, 30,rl.WHITE)
+		//	}
+		//}
 
 
 		rl.DrawRectangleRec(platform_collider(platform), rl.WHITE)

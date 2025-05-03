@@ -10,17 +10,18 @@ player_current_anim: types.Animation
 player_anims: [2]types.Animation
 player_flip: bool
 
+
 player_init :: proc() {
 	player_run := types.Animation {
-		texture      = rl.LoadTexture("./assets/sprites/knight.png"),
+		texture      = rl.LoadTexture("./assets/cat/cat_run.png"),
 		num_frames   = 4,
 		frame_length = 0.1,
 		name         = .Run,
 	}
 
 	player_idle := types.Animation {
-		texture      = rl.LoadTexture("./assets/sprites/knight.png"),
-		num_frames   = 4,
+		texture      = rl.LoadTexture("./assets/cat/cat_idle.png"),
+		num_frames   = 2,
 		frame_length = 0.5,
 		name         = .Idle,
 	}
